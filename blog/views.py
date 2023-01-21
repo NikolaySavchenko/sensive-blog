@@ -26,13 +26,11 @@ def serialize_post_optimized(post):
         'title': post.title,
         'teaser_text': post.text[:200],
         'author': post.author.username,
-        # 'comments_amount': post.comments.count(),
         'comments_amount': post.post_comments,
         'image_url': post.image.url if post.image else None,
         'published_at': post.published_at,
         'slug': post.slug,
-        # 'tags': [serialize_tag(tag) for tag in post.tags.all()],
-        # 'tags': {}
+        'tags': [serialize_tag(tag) for tag in post.tags.all()],
         'first_tag_title': post.tags.first().title,
     }
 
