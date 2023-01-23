@@ -15,7 +15,7 @@ class PostQuerySet(models.QuerySet):
 
     def fetch_with_comments_count(self):
         # Используется, если запрос уже содержит annotate().
-        # Исключает кратно увеличивающееся кол-во запросов при использваонии двойного annotate().
+        # Исключает кратно увеличивающееся кол-во запросов, какое возникает при использваонии нескольких annotate().
         # Существенно сокращает время загрузки
         posts_for_comments = self
         posts_ids = [post.id for post in posts_for_comments]
