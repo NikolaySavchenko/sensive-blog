@@ -49,7 +49,7 @@ def index(request):
     most_fresh_posts = Post.objects.annotate(comments_count=Count('comments')).order_by('-published_at')[:5] \
                                     .prefetch_related('tags')
 
-    most_popular_tags = Tag.objects.popular()[:5]
+    most_popular_tags = Tag.objects.popular()[:5].prefetch_related('posts')
 
     context = {
         'most_popular_posts': [serialize_post_optimized(post) for post in
