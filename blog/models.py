@@ -75,7 +75,7 @@ class Tag(models.Model):
         ordering = ['title']
         verbose_name = 'тег'
         verbose_name_plural = 'теги'
-        
+
     objects = TagQuerySet.as_manager()
 
     def __str__(self):
