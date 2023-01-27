@@ -54,6 +54,8 @@ class Post(models.Model):
         related_name='posts',
         verbose_name='Теги')
 
+    objects = PostQuerySet.as_manager()
+
     class Meta:
         ordering = ['-published_at']
         verbose_name = 'пост'
@@ -65,8 +67,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail', args={'slug': self.slug})
 
-    objects = PostQuerySet.as_manager()
-
 
 class Tag(models.Model):
     title = models.CharField('Тег', max_length=20, unique=True)
@@ -75,6 +75,8 @@ class Tag(models.Model):
         ordering = ['title']
         verbose_name = 'тег'
         verbose_name_plural = 'теги'
+        
+    objects = TagQuerySet.as_manager()
 
     def __str__(self):
         return self.title
@@ -84,8 +86,6 @@ class Tag(models.Model):
 
     def clean(self):
         self.title = self.title.lower()
-
-    objects = TagQuerySet.as_manager()
 
 
 class Comment(models.Model):
